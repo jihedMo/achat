@@ -35,6 +35,7 @@ public class Stock implements Serializable {
 		this.libelleStock = libelleStock;
 		this.qte = qte;
 		this.qteMin = qteMin;
+////test 
 	}
 
 }
