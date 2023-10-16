@@ -1,14 +1,15 @@
 # Use an official OpenJDK 11 base image
-FROM openjdk:11
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:8-jdk-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Expose port 8080
+# Copy the packaged JAR file into the container
+COPY target/achat-1.0.jar /app/achat.jar
+
+# Expose the port that the application will run on
 EXPOSE 8080
 
-# Copy the compiled JAR file into the container
-ADD target/achat.jar achat.jar
-
-# Specify the command to run your application
-ENTRYPOINT ["java", "-jar", "achat.jar"]
+# Define the command to run your application
+CMD ["java", "-jar", "achat.jar"]
