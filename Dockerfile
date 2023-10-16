@@ -1,11 +1,14 @@
 # Use an official OpenJDK 11 base image
-FROM openjdk:11-jre-slim
+FROM openjdk:11
 
 # Set the working directory inside the container
 WORKDIR /app
 
+# Expose port 8080
+EXPOSE 8080
+
 # Copy the compiled JAR file into the container
-COPY target/your-application.jar /app/your-application.jar
+ADD target/achat.jar achat.jar
 
 # Specify the command to run your application
-CMD ["java", "-jar", "your-application.jar"]
+ENTRYPOINT ["java", "-jar", "achat.jar"]
