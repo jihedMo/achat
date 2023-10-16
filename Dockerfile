@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-=======
 # Use an official OpenJDK 11 base image
->>>>>>> 23d2ea4cd062f06781c15ed0cb5aae24857df672
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:8-jdk-alpine
+FROM openjdk:11-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -15,8 +11,4 @@ COPY target/achat.jar /app/achat.jar
 EXPOSE 8080
 
 # Define the command to run your application
-<<<<<<< HEAD
 CMD ["java", "-jar", "achat.jar"]
-=======
-CMD ["java", "-jar", "achat.jar"]
->>>>>>> 23d2ea4cd062f06781c15ed0cb5aae24857df672
