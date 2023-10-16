@@ -6,7 +6,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /app
 
 # Copy the packaged JAR file into the container
-COPY target/achat-1.0.jar /app/achat.jar
+COPY target/achat.jar /app/achat.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
