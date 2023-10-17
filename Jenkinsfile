@@ -1,42 +1,24 @@
-pipeline{
+pipeline {
     agent any
-	 environment {
-            DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-    }
-
-    tools {
-        maven 'Maven3'
-    }
     stages {
-
-
-        stage ('GIT') {
+        stage('GIT') {
             steps {
-               echo "Getting Project from Git";
+                echo "Getting Project from Git"
                 git branch: 'rania-amri-5sleam1', url: 'https://github.com/jihedMo/achat.git'
-
             }
         }
-        stage('Clean'){
+        stage('Clean') {
             steps {
                 sh 'mvn clean '
             }
-
         }
-
-
-        stage('Compile'){
+        stage('Compile') {
             steps {
-                sh 'mvn compile -DskipTests'
+                script {
+                    def mavenHome = sh(returnStdout: true, script: 'echo $M2_HOME').trim()
+                    sh "${mavenHome}/bin/mvn compile -DskipTests"
+                }
             }
-
         }
-
-
-
-
-
-
-
-}
+    }
 }
