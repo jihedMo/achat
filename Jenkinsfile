@@ -6,7 +6,7 @@ pipeline{
         stage ('GIT') {
             steps {
                echo "Getting Project from Git";
-                git branch: 'rania-amri-5sleam1', url: 'https://github.com/jihedMo/achat.git'
+               sh 'git checkout rania-amri-5sleam1'
 
             }
         }
