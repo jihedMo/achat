@@ -4,6 +4,9 @@ pipeline{
             DOCKERHUB_CREDENTIALS=credentials('dockerhub')
     }
 
+    tools {
+        maven 'Maven3'
+    }
     stages {
 
 
