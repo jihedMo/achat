@@ -5,7 +5,7 @@ pipeline{
     }
 
     tools {
-        maven 'JAVA_HOME'
+        maven 'M2_HOME'
     }
     stages {
 
