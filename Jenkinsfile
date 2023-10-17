@@ -1,12 +1,19 @@
 pipeline{
     agent any
+	 environment {
+            DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+    }
+
+    tools {
+        maven 'M2_HOME'
+    }
     stages {
 
 
         stage ('GIT') {
             steps {
                echo "Getting Project from Git";
-               sh 'git checkout rania-amri-5sleam1'
+                git branch: 'rania-amri-5sleam1', url: 'https://github.com/jihedMo/achat.git'
 
             }
         }
