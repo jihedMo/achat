@@ -136,7 +136,10 @@
 				</plugins>
 
 			</pluginManagement>
+		<finalName>achat-1.0</finalName>
 	</build>
+
+
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
