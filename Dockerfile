@@ -5,8 +5,7 @@ FROM openjdk:8-jdk-alpine
 EXPOSE 8080
 
 # Copiez les fichiers de votre application dans le conteneur
-COPY target/achat-1.0.jar /app/achat.jar
-
+ADD target/achat-1.0.jar /app/achat.jar
 # Commande d'exécution
 CMD ["java", "-jar", "/app/achat.jar"]
 
