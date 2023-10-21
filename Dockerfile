@@ -1,11 +1,9 @@
-FROM openjdk:11-jdk-slim
+FROM openjdk:8-jdk-alpine
 
-WORKDIR /app
-
-RUN ls -l /app
-
-COPY target/achat.jar /app/achat.jar
-
+# Exposez un port
 EXPOSE 8080
 
-CMD ["java", "-jar", "achat.jar"]
+# Copiez les fichiers de votre application dans le conteneur
+ADD target/achat.jar /app/achat.jar
+
+CMD ["java", "-jar", "/app/achat.jar"]
