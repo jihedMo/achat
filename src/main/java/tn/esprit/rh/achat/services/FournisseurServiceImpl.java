@@ -27,6 +27,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	@Autowired
 	SecteurActiviteRepository secteurActiviteRepository;
 
+
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
 		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurRepository.findAll();
@@ -53,9 +54,12 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	}
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
-		DetailFournisseur df = saveDetailFournisseur(f);
-		f.setDetailFournisseur(df);	
-		fournisseurRepository.save(f);
+		DetailFournisseur df = f.getDetailFournisseur();
+		if (df != null) {
+			df = saveDetailFournisseur(f);
+			f.setDetailFournisseur(df);
+			fournisseurRepository.save(f);
+		}
 		return f;
 	}
 

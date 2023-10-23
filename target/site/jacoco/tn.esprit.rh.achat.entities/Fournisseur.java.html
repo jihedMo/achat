@@ -38,13 +38,14 @@ public class Fournisseur implements Serializable {
 	@OneToMany(mappedBy=&quot;fournisseur&quot;)
 	@JsonIgnore
 <span class="nc" id="L40">	private Set&lt;Facture&gt; factures;</span>
-    @ManyToMany
-    @JsonIgnore
-<span class="nc" id="L43">    private Set&lt;SecteurActivite&gt; secteurActivites;</span>
-    @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
-<span class="nc" id="L45">    private DetailFournisseur detailFournisseur;</span>
-    
 
-	
+
+	@ManyToMany
+    @JsonIgnore
+<span class="nc" id="L45">    private Set&lt;SecteurActivite&gt; secteurActivites;</span>
+    @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
+<span class="nc" id="L47">    private DetailFournisseur detailFournisseur;</span>
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
