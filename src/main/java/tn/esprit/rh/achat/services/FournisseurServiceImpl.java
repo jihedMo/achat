@@ -28,6 +28,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	SecteurActiviteRepository secteurActiviteRepository;
 
 
+
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
 		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurRepository.findAll();
@@ -46,22 +47,26 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		fournisseurRepository.save(f);
 		return f;
 	}
-	
-	private DetailFournisseur  saveDetailFournisseur(Fournisseur f){
+
+	DetailFournisseur saveDetailFournisseur(Fournisseur f) {
 		DetailFournisseur df = f.getDetailFournisseur();
-		detailFournisseurRepository.save(df);
+		if (df != null) {
+			detailFournisseurRepository.save(df);
+		}
 		return df;
 	}
+
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
 		DetailFournisseur df = f.getDetailFournisseur();
 		if (df != null) {
-			df = saveDetailFournisseur(f);
+			df = saveDetailFournisseur(f); // Enregistrez le DetailFournisseur et récupérez-le
 			f.setDetailFournisseur(df);
 			fournisseurRepository.save(f);
 		}
 		return f;
 	}
+
 
 	@Override
 	public void deleteFournisseur(Long fournisseurId) {
