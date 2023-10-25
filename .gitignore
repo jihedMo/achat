@@ -13,8 +13,7 @@ mvnw
 
 mvnw.cmd
 
-target/
-
+.target/
 .settings/
 
 .mvn/
