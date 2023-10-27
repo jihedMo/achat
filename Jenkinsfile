@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "/opt/maven/bin:$PATH"
-        JAVA_HOME = "/usr/lib/jvm/java-1.11.0-openjdk-amd64"
+
          NEXUS_VERSION="nexus3"
                  NEXUS_PROTOCOL="https"
                   NEXUS_URL="192.168.1.158:8081"
