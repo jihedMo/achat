@@ -24,15 +24,17 @@ pipeline {
                 }
             }
         }
-      stage('SonarQube analysis') {
-                 steps {
-                     script {
-                         def scannerHome = tool 'sonarqube';
-                         withSonarQubeEnv('SonarQube') {
-                             sh "sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar"
-                         }
-                     }
-                 }
-             }
+           stage('SonarQube analysis') {
+                steps {
+                    script {
+                        withSonarQubeEnv(credentialsId: 'SonarQube_Token') {
+                            sh """
+                                mvn clean package sonar:sonar \
+                                -Dsonar.sonar -Dsonar.password=sonar
+                            """
+                        }
+                    }
+                }
+            }
          }
      }
