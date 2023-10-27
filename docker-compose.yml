@@ -1,4 +1,4 @@
-version: '2.21'  # Version de Docker Compose
+version: '2.21'
 
 services:
   mysqldb:
@@ -12,12 +12,12 @@ services:
   achat:
     depends_on:
       - mysqldb
-    build: ./
+    image: wiem2023/smida_wiem_5sleam1  # Spécifiez l'image pour le service achat
     restart: on-failure
     ports:
       - 6868:8082
     volumes:
-      - .m2:/root/.m2  # Correction de "roor" à "root"
+      - .m2:/root/.m2
     stdin_open: true
     tty: true
 
