@@ -1,4 +1,4 @@
-version: '2.12'  # Version de Docker Compose
+version: '2.21'  # Version de Docker Compose
 
 services:
   mysqldb:
