@@ -80,16 +80,6 @@
 			<artifactId>byte-buddy</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-		</dependency>
-
 
 	</dependencies>
 
@@ -98,7 +88,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://localhost:8081/repository/maven-releases/</url>
+			<url>http://localhost:8081/repository/wiem_smida_5sleam1/</url>
 		</repository>
 	</distributionManagement>
 

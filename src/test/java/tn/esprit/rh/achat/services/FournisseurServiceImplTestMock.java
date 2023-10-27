@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,10 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
+
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class FournisseurServiceImplTestMock {
@@ -38,8 +43,8 @@ public class FournisseurServiceImplTestMock {
     @Mock
     private DetailFournisseurRepository detailFournisseurRepository;
 
-    @Mock
-    private SecteurActiviteRepository secteurActiviteRepository;
+
+
 
     @Before
     public void setUp() {
@@ -51,6 +56,8 @@ public class FournisseurServiceImplTestMock {
         List<Fournisseur> fournisseurs = Arrays.asList(fournisseur1, fournisseur2);
         // Configurez le comportement du repository pour renvoyer les données fictives
         when(fournisseurRepository.findAll()).thenReturn(fournisseurs);
+
+
     }
 
 
@@ -132,7 +139,6 @@ public class FournisseurServiceImplTestMock {
         // Vérifiez que le fournisseur récupéré correspond au fournisseur fictif
         assertEquals(fournisseur, retrievedFournisseur);
     }
-
 
 
 }

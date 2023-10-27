@@ -41,7 +41,7 @@ public class Fournisseur implements Serializable {
 
 
 	@ManyToMany
-    @JsonIgnore
+	@JsonIgnore
 <span class="nc" id="L45">    private Set&lt;SecteurActivite&gt; secteurActivites;</span>
     @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
 <span class="nc" id="L47">    private DetailFournisseur detailFournisseur;</span>
