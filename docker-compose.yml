@@ -1,25 +1,36 @@
-version: '2.21'  # Version de Docker Compose
+version: "3.9"
 
 services:
-  mysqldb:
-    image: mysql:5.7
+  5TWIN6-G3-KADDEM:
+    container_name: 5TWIN6-G3-KADDEM
+    build: 5TWIN6-G3-KADDEM
+    ports:
+      - "8090:8089"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    image: "5twin6-g3-kaddem"
     restart: unless-stopped
-    ports:
-      - 3307:3306
-    volumes:
-      - db:/var/lib/mysql
-
-  achat:
     depends_on:
-      - mysqldb
-    build: ./
-    restart: on-failure
-    ports:
-      - 6868:8082
-    volumes:
-      - .m2:/root/.m2  # Correction de "roor" à "root"
-    stdin_open: true
-    tty: true
+      - db-mysql
 
-volumes:
-  db:
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql  
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - "3307:3306"
+    restart: unless-stopped  
+
+  sonarqube:
+    image: sonarqube:8.9.7-community
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8081:8081"
