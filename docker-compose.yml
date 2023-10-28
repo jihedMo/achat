@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  5TWIN6-G3-KADDEM:
-    container_name: 5TWIN6-G3-KADDEM
-    build: 5TWIN6-G3-KADDEM
+  gamrabenmarzouka_5sleam1:
+    container_name: gamrabenmarzouka_5sleam1
+    build: gamrabenmarzouka_5sleam1
     ports:
       - "8090:8089"
     environment:
