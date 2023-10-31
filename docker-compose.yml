@@ -1,25 +1,26 @@
-version: '2.21'
+version: "3.9"
 
 services:
-  mysqldb:
-    image: mysql:5.7
+ smida_wiem_5sleam1:
+    container_name: smida_wiem_5sleam1
+    image: wiem2023/smida_wiem_5sleam1
+    ports:
+      - "8090:8089"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
     restart: unless-stopped
-    ports:
-      - 3307:3306
-    volumes:
-      - db:/var/lib/mysql
-
-  achat:
     depends_on:
-      - mysqldb
-    image: wiem2023/smida_wiem_5sleam1  # Spécifiez l'image pour le service achat
-    restart: on-failure
-    ports:
-      - 6868:8082
-    volumes:
-      - .m2:/root/.m2
-    stdin_open: true
-    tty: true
+      - db-mysql
 
-volumes:
-  db:
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql  
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - "3307:3306"
+    restart: unless-stopped  
+
+ 
