@@ -121,7 +121,7 @@
 					<!--second execution : for creating code coverage reports-->
 					<execution>
 						<id>report</id>
-						<phase>test</phase>
+						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
