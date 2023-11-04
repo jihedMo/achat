@@ -5,7 +5,7 @@ services:
     container_name: smida_wiem_5sleam1
     image: wiem2023/smida_wiem_5sleam1
     ports:
-      - "8082:8089"
+      - "8088:8089"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=root
