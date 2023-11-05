@@ -24,6 +24,7 @@
         <sonar.tests>src/test</sonar.tests>
         <sonar.java.binaries>target/classes</sonar.java.binaries>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.host.url>http://192.168.1.127:9000</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
