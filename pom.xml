@@ -71,6 +71,16 @@
 			<version>0.8.7</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -126,7 +136,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://192.168.1.158:8081/repository/maven-releases/</url>
+			<url>http://192.168.1.158:8081/repository/rania-amri-5sleam1/</url>
 		</repository>
 	</distributionManagement>
 
