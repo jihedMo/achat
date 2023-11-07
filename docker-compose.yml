@@ -2,9 +2,9 @@
 version: "2.21"
 
 services:
-  gamrabenmarzouka_5sleam1:
-    container_name: jihed_mohamed_5sleam1
-    image: jnounou/jihed_mohamed_5sleam1
+  jihed_5sleam1:
+    container_name: jihed_5sleam1
+    image: jnounou/jihed_5sleam1
     ports:
       - "8090:8089"
     environment:
