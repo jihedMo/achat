@@ -24,13 +24,13 @@ services:
       - "3309:3306"
     restart: unless-stopped  
 
-sonarqube:
-    image: sonarqube:3.4.0.905-community
+  sonarqube:
+    image: sonarqube:8.9.7-community
     ports:
       - "9000:9000"
       - "9092:9092"
 
-nexus:
+  nexus:
     image: sonatype/nexus3
     ports:
       - "8081:8081"
