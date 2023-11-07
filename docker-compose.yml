@@ -33,5 +33,3 @@ services:
     image: sonatype/nexus3
     ports:
       - "8086:8081"
-
- 
