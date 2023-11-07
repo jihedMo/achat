@@ -2,9 +2,9 @@
 version: "2.21"
 
 services:
-  jihed_5sleam1:
-    container_name: jihed_5sleam1
-    image: jnounou/jihed_5sleam1
+  jihed-mohamed-5sleam:
+    container_name: jihed-mohamed-5sleam
+    image: jnounou/jihed-mohamed-5sleam
     ports:
       - "8090:8089"
     environment:
