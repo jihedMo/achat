@@ -23,7 +23,7 @@ import tn.esprit.rh.achat.controllers.StockRestController;
 import tn.esprit.rh.achat.entities.Stock;
 import tn.esprit.rh.achat.repositories.StockRepository;
 import tn.esprit.rh.achat.services.StockServiceImpl;
-
+/////////////
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
