@@ -90,7 +90,7 @@ environment {
             steps {
                 // Provide SonarQube authentication using the provided token
                 withCredentials([string(credentialsId: 'achatDevops', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                    sh "mvn clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN"
                 }
             }
         }
