@@ -24,6 +24,8 @@ public class StockMockitoTest {
 
     private StockServiceImpl service;
     private StockRepository repository;
+
+
     @Test
     public void getStockTest(){
         System.out.println(" get test stock");
