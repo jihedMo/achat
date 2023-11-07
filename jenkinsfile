@@ -107,7 +107,13 @@ environment {
                 }
             }
 
-        
+        stage('JUnit/Mockito') {
+            steps {
+                 script {
+                sh 'mvn test'
+                }
+            }
+        }
 
     }
 }
