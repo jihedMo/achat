@@ -94,32 +94,7 @@ environment {
                 }
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build the Docker image (replace 'Dockerfile' with your Dockerfile location)
-                    sh 'docker build -t jnounou/achat:1.0 -f Dockerfile .'
-                }
-            }
-        }
 
-        stage('Push to DockerHub') { 
-            steps { 
-                script { // Log in to DockerHub using the credentials 
-                        withCredentials([string(credentialsId: 'dockerhub_hub', variable: 'DOCKERHUB_PASSWORD')]) { 
-                        sh "docker login -u jnounou -p ${DOCKERHUB_PASSWORD}" 
-                         } 
-                           // Push the Docker image to DockerHub 
-                         sh 'docker push jnounou/achat:1.0'
-                                                    }
-                                               }
-                                       }
-          stage('Deploy with Docker Compose') {
-            steps {
-                    sh 'docker-compose up -d'  // Use -d to run in detached mode
-            
-                }
-            }
 
         stage('JUnit/Mockito') {
             steps {
