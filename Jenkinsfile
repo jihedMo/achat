@@ -10,7 +10,7 @@ environment {
     stages {
         stage('Récupération du code de la branche') {
             steps {
-                git branch: 'jihed_mohamed_5sleam' , 
+                git branch: 'jihed-mohamed-5sleam' , 
                 url : 'https://github.com/jihedMo/achat.git';
             }
         }
