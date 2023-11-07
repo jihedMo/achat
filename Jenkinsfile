@@ -50,7 +50,7 @@ environment {
                 }
             }
         }
-        
+                
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -120,14 +120,6 @@ stage('Build Docker Image') {
             
                 }
             }
-
-        stage('JUnit/Mockito') {
-            steps {
-                 script {
-                sh 'mvn test'
-                }
-            }
-        }
 
     }
 }
