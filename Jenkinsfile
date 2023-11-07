@@ -94,11 +94,11 @@ environment {
                 }
             }
         }
-        stage('Build Docker Image') {
+stage('Build Docker Image') {
             steps {
                 script {
                     // Build the Docker image (replace 'Dockerfile' with your Dockerfile location)
-                    sh 'sudo docker build -t jnounou/achat:1.0 -f Dockerfile .'
+                    sh 'docker build -t jnounou/achat:1.0 -f Dockerfile .'
                 }
             }
         }
@@ -106,7 +106,7 @@ environment {
         stage('Push to DockerHub') { 
             steps { 
                 script { // Log in to DockerHub using the credentials 
-                        withCredentials([string(credentialsId: 'achatDevops', variable: 'DOCKERHUB_PASSWORD')]) { 
+                        withCredentials([string(credentialsId: 'dockerhub_hub', variable: 'DOCKERHUB_PASSWORD')]) { 
                         sh "docker login -u jnounou -p ${DOCKERHUB_PASSWORD}" 
                          } 
                            // Push the Docker image to DockerHub 
