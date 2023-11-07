@@ -1,12 +1,36 @@
-version: "3.8"
-services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    ports:
-      - "3307:3306"
-    volumes:
-      - db:/var/lib/mysql
+---
+version: "2.21"
 
-volumes:
-  db: {}
+services:
+  gamrabenmarzouka_5sleam1:
+    container_name: jihed_mohamed_5sleam1
+    image: jnounou/jihed_mohamed_5sleam1
+    ports:
+      - "8090:8089"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    restart: unless-stopped
+    depends_on:
+      - db-mysql
+
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql  
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - "3309:3306"
+    restart: unless-stopped  
+
+  sonarqube:
+    image: sonarqube:8.9.7-community
+    ports:
+      - "9003:9000"
+      - "9092:9092"
+
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8086:8081"
