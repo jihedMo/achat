@@ -110,7 +110,7 @@ environment {
                         sh "docker login -u jnounou -p ${DOCKERHUB_PASSWORD}" 
                          } 
                            // Push the Docker image to DockerHub 
-                         sh 'docker push sirinekaroui/achat:1.0'
+                         sh 'docker push jnounou/achat:1.0'
                                                     }
                                                }
                                        }
