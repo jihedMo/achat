@@ -1,18 +1,15 @@
 package tn.esprit.rh.achat;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.rh.achat.entities.Operateur;
 import tn.esprit.rh.achat.repositories.OperateurRepository;
 import tn.esprit.rh.achat.services.OperateurServiceImpl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class mockitotest {
@@ -22,29 +19,54 @@ public class mockitotest {
     @Mock
     private OperateurRepository operateurRepository;
 
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
-    public void testAddOperateur() {
-        // Créer un objet Operateur simulé
+    public void testCreateOperateur() {
         Operateur operateur = new Operateur();
         operateur.setNom("John");
         operateur.setPrenom("Doe");
+        operateur.setPassword("password");
 
-        // Simuler le comportement de operateurRepository.save
         when(operateurRepository.save(operateur)).thenReturn(operateur);
 
-        // Appeler la méthode que vous voulez tester
-        Operateur result = operateurService.addOperateur(operateur);
+        Operateur savedOperateur = operateurService.addOperateur(operateur);
 
-        // Vérifier que operateurRepository.save a été appelé une fois
-        verify(operateurRepository).save(operateur);
+        assertNotNull(savedOperateur);
+        assertEquals("John", savedOperateur.getNom());
+        assertEquals("Doe", savedOperateur.getPrenom());
 
-        // Vérifier que le résultat de la méthode est le même que l'objet simulé
-        assertEquals(operateur, result);
+        verify(operateurRepository, times(1)).save(operateur);
+    }
+
+    @Test
+    public void testRetrieveOperateur() {
+        Long operateurId = 1L;
+        Operateur operateur = new Operateur();
+        operateur.setIdOperateur(operateurId);
+        operateur.setNom("John");
+
+        when(operateurRepository.findById(operateurId)).thenReturn(java.util.Optional.of(operateur));
+
+        Operateur retrievedOperateur = operateurService.retrieveOperateur(operateurId);
+
+        assertNotNull(retrievedOperateur);
+        assertEquals(operateurId, retrievedOperateur.getIdOperateur());
+        assertEquals("John", retrievedOperateur.getNom());
+
+        verify(operateurRepository, times(1)).findById(operateurId);
+    }
+
+
+
+    @Test
+    public void testDeleteOperateur() {
+        // Identifiant de l'opérateur à supprimer
+        Long operateurId = 1L;
+
+        // Appelez la méthode à tester
+        operateurService.deleteOperateur(operateurId);
+
+        // Vérifiez que la méthode deleteById a été appelée avec l'identifiant de l'opérateur
+        verify(operateurRepository, times(1)).deleteById(operateurId);
     }
 
 }
