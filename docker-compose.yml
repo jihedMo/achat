@@ -23,4 +23,24 @@ services:
       - "3301:3306"
     restart: unless-stopped  
 
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql  
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - "3309:3306"
+    restart: unless-stopped  
+
+  sonarqube:
+    image: sonarqube:8.9.7-community
+    ports:
+      - "9003:9000"
+      - "9092:9092"
+
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8086:8081"
+
  
