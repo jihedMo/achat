@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {SecteurActiviteServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-public class SecteurActiviteTest {
+class SecteurActiviteTest {
 
     @MockBean
     private SecteurActiviteRepository secteurActiviteRepository;
