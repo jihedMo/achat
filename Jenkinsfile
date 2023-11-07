@@ -38,7 +38,7 @@ environment {
             }
         }
 
-         stage ('Functional tests') {
+         stage ('JaCoCo tests') {
             steps {
                 sh 'mvn verify -Pstaging'
             }
