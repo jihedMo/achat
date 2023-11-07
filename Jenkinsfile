@@ -37,6 +37,20 @@ environment {
                 }
             }
         }
+
+         stage ('Functional tests') {
+            steps {
+                sh 'mvn verify -Pstaging'
+            }
+            post {
+                success {
+                    junit '**/target/*-reports/*.xml'
+                    jacoco(execPattern: 'ft-staging/target/jacoco.exec')
+                    archive "ft-staging/target/**/*"
+                }
+            }
+        }
+        
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
