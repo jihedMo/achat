@@ -13,7 +13,7 @@ import tn.esprit.rh.achat.services.OperateurServiceImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
+
 public class OperateurServiceTest {
 
     @Autowired
