@@ -2,50 +2,80 @@ package tn.esprit.rh.achat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.rh.achat.entities.Operateur;
+import tn.esprit.rh.achat.repositories.OperateurRepository;
 import tn.esprit.rh.achat.services.OperateurServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class OperateurServiceTest {
 
     @Autowired
     private OperateurServiceImpl operateurService;
 
     @Test
-    @Transactional
-    public void testCrudOperations() {
-        // Créer un nouvel opérateur
+    public void testAddOperateur() {
         Operateur operateur = new Operateur();
-        operateur.setNom("gamra");
-        operateur.setPrenom("benmarzouka");
-        operateur.setPassword("password");
+        operateur.setNom("NomTest");
+        operateur.setPrenom("PrenomTest");
+        operateur.setPassword("PasswordTest");
 
-        // Ajouter l'opérateur
-        operateurService.addOperateur(operateur);
+        Operateur addedOperateur = operateurService.addOperateur(operateur);
 
-        // Lire l'opérateur depuis la base de données
-        Operateur retrievedOperateur = operateurService.retrieveOperateur(operateur.getIdOperateur());
+        assertNotNull(addedOperateur);
+        assertNotNull(addedOperateur.getIdOperateur());
+        assertEquals("NomTest", addedOperateur.getNom());
+    }
+
+    @Test
+    public void testRetrieveOperateur() {
+        Operateur operateur = new Operateur();
+        operateur.setNom("NomTest");
+        operateur.setPrenom("PrenomTest");
+        operateur.setPassword("PasswordTest");
+
+        Operateur addedOperateur = operateurService.addOperateur(operateur);
+
+        Operateur retrievedOperateur = operateurService.retrieveOperateur(addedOperateur.getIdOperateur());
+
         assertNotNull(retrievedOperateur);
-        assertEquals("gamra", retrievedOperateur.getNom());
+        assertEquals("NomTest", retrievedOperateur.getNom());
+    }
 
-        // Mettre à jour l'opérateur
-        retrievedOperateur.setNom("Jane");
-        operateurService.updateOperateur(retrievedOperateur);
+    @Test
+    public void testUpdateOperateur() {
+        Operateur operateur = new Operateur();
+        operateur.setNom("NomTest");
+        operateur.setPrenom("PrenomTest");
+        operateur.setPassword("PasswordTest");
 
-        // Lire l'opérateur mis à jour depuis la base de données
-        Operateur updatedOperateur = operateurService.retrieveOperateur(retrievedOperateur.getIdOperateur());
+        Operateur addedOperateur = operateurService.addOperateur(operateur);
+        addedOperateur.setNom("NouveauNom");
+
+        Operateur updatedOperateur = operateurService.updateOperateur(addedOperateur);
+
         assertNotNull(updatedOperateur);
-        assertEquals("Jane", updatedOperateur.getNom());
+        assertEquals("NouveauNom", updatedOperateur.getNom());
+    }
 
-        // Supprimer l'opérateur
-        operateurService.deleteOperateur(updatedOperateur.getIdOperateur());
+    @Test
+    public void testDeleteOperateur() {
+        Operateur operateur = new Operateur();
+        operateur.setNom("NomTest");
+        operateur.setPrenom("PrenomTest");
+        operateur.setPassword("PasswordTest");
 
-        // Vérifier si l'opérateur a été supprimé
-        Operateur deletedOperateur = operateurService.retrieveOperateur(updatedOperateur.getIdOperateur());
+        Operateur addedOperateur = operateurService.addOperateur(operateur);
+
+        operateurService.deleteOperateur(addedOperateur.getIdOperateur());
+
+        Operateur deletedOperateur = operateurService.retrieveOperateur(addedOperateur.getIdOperateur());
+
         assertNull(deletedOperateur);
     }
 }
