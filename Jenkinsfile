@@ -20,14 +20,7 @@ pipeline {
                 sh "mvn compile"
             }
         }
-        stage('SonarQube') {
-            steps {
-                // Provide SonarQube authentication using the provided token
-                withCredentials([string(credentialsId: 'achattoken', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
-                }
-            }
-        }
+      
           stage('Exécution des tests') {
             steps {
                 sh "mvn test "  // Run JUnit tests
@@ -72,7 +65,14 @@ pipeline {
             
                 }
             }
-
+  stage('SonarQube') {
+            steps {
+                // Provide SonarQube authentication using the provided token
+                withCredentials([string(credentialsId: 'achattoken', variable: 'SONAR_TOKEN')]) {
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                }
+            }
+        }
 
                 
        
