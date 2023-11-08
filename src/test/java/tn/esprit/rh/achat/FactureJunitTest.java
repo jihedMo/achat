@@ -32,7 +32,7 @@ public class FactureJunitTest {
         assertEquals(100.0f, facture.getMontantRemise(), 0.001);
     }
 //comm
-    //mmmmmmmmmm
+    //mmmmmmmmmmmmmmmmmmmmmmmmmmm
     @Test
     public void testMontantFacture() {
         assertEquals(1000.0f, facture.getMontantFacture(), 0.001);
