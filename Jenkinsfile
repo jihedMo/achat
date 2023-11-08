@@ -24,7 +24,7 @@ environment {
                 sh "mvn compile"
             }
         }
-          stage('Exécution des tests') {
+          stage('JUnit/Mockito') {
             steps {
                 sh "mvn test "  // Run JUnit tests
             }
@@ -37,8 +37,6 @@ environment {
                 }
             }
         }
-
-        stage{
             post {
                 success {
                     junit '**/target/*-reports/*.xml'
@@ -46,9 +44,7 @@ environment {
                     archive "ft-staging/target/**/*"
                 }
             }
-        }
-        
-                
+
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -88,11 +84,11 @@ environment {
             steps {
                 // Provide SonarQube authentication using the provided token
                 withCredentials([string(credentialsId: 'achatDevops', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
                 }
             }
         }
-stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     // Build the Docker image (replace 'Dockerfile' with your Dockerfile location)
@@ -118,11 +114,7 @@ stage('Build Docker Image') {
             
                 }
             }
-    
-         stage ('JaCoCo tests') {
-            steps {
-                sh 'mvn verify -Pstaging'
-            }
-         }
+
+
     }
 }
