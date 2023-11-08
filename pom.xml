@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.3</version>
+		<version></version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tn.esprit.rh</groupId>
@@ -136,7 +136,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://192.168.1.158:8081/repository/rania-amri-5sleam1/</url>
+			<url>http://192.168.1.159:8081/repository/rania-amri-5sleam1/</url>
 		</repository>
 	</distributionManagement>
 
