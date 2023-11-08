@@ -38,7 +38,7 @@ environment {
             }
         }
 
-
+        stage{
             post {
                 success {
                     junit '**/target/*-reports/*.xml'
@@ -46,6 +46,7 @@ environment {
                     archive "ft-staging/target/**/*"
                 }
             }
+        }
         
                 
         stage("Publish to Nexus Repository Manager") {
