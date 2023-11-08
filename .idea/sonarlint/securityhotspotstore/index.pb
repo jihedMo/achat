@@ -17,3 +17,5 @@ f
 6src/main/java/tn/esprit/rh/achat/entities/Facture.java,3\c\3c6f7760de745cb3c28e4dc7e4888c90b2865084
 q
 Asrc/main/java/tn/esprit/rh/achat/services/FactureServiceImpl.java,a\c\ac68ecddc0b282080251b254f5c490208d467cc0
+f
+6src/test/java/tn/esprit/rh/achat/FactureJunitTest.java,c\4\c400a45595f2b771abc3425a681dcd6020fe57cd
