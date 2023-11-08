@@ -15,6 +15,7 @@ import tn.esprit.rh.achat.controllers.ReglementRestController;
 import tn.esprit.rh.achat.entities.Reglement;
 import tn.esprit.rh.achat.services.IReglementService;
 //new commentaire
+// commentaire 2
 @RunWith(MockitoJUnitRunner.class)
 public class ReglementTest {
     @InjectMocks
