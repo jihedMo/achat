@@ -37,13 +37,6 @@ environment {
                 }
             }
         }
-        stage('Build') {
-     steps {
-        sh './jenkins_build.sh'
-        junit '*/build/test-results/*.xml'
-        step( [ $class: 'JacocoPublisher' ] )
-     }
-}
 
         stage("Publish to Nexus Repository Manager") {
             steps {
