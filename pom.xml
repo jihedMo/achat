@@ -77,7 +77,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://192.168.1.97:8081/repository/jihed_mohamed_5sleam1/</url>
+			<url>http://192.168.100.7:8081/repository/jihed_mohamed_5sleam1/</url>
 		</repository>
 	</distributionManagement>
 	<build>
