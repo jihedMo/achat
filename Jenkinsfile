@@ -37,13 +37,13 @@ environment {
                 }
             }
         }
-            post {
-                success {
-                    junit '**/target/*-reports/*.xml'
-                    jacoco(execPattern: 'ft-staging/target/jacoco.exec')
-                    archive "ft-staging/target/**/*"
-                }
-            }
+        stage('Build') {
+     steps {
+        sh './jenkins_build.sh'
+        junit '*/build/test-results/*.xml'
+        step( [ $class: 'JacocoPublisher' ] )
+     }
+}
 
         stage("Publish to Nexus Repository Manager") {
             steps {
