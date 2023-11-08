@@ -23,7 +23,7 @@ pipeline {
         stage('SonarQube') {
             steps {
                 // Provide SonarQube authentication using the provided token
-                withCredentials([string(credentialsId: 'achatToken', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: 'achattoken', variable: 'SONAR_TOKEN')]) {
                     sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
                 }
             }
