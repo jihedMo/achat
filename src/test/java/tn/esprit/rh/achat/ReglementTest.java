@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import tn.esprit.rh.achat.controllers.ReglementRestController;
 import tn.esprit.rh.achat.entities.Reglement;
 import tn.esprit.rh.achat.services.IReglementService;
-//new commentaire 
+//new commentaire
 @RunWith(MockitoJUnitRunner.class)
 public class ReglementTest {
     @InjectMocks

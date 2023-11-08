@@ -81,10 +81,10 @@
 	<distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
-			<name>Nexus Repository</name>
-			<url>http://192.168.1.97:8081/repository/maven-releases/</url>
+			<url>http://192.168.33.10:8081/repository/Mejri_Samar/</url>
 		</repository>
 	</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
