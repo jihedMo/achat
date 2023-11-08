@@ -38,10 +38,7 @@ environment {
             }
         }
 
-         stage ('JaCoCo tests') {
-            steps {
-                sh 'mvn verify -Pstaging'
-            }
+
             post {
                 success {
                     junit '**/target/*-reports/*.xml'
@@ -120,6 +117,9 @@ stage('Build Docker Image') {
             
                 }
             }
-
+         stage ('JaCoCo tests') {
+            steps {
+                sh 'mvn verify -Pstaging'
+            }
     }
 }
