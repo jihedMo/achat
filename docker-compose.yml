@@ -1,25 +1,25 @@
-version: "3.8"
+version: "2.21"
+
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    ports:
-      - "3307:3306"
-    volumes:
-      - db:/var/lib/mysql
-
   rania-amri-5sleam1:
-    depends_on:
-      - mysqldb
+    container_name: rania-amri-5sleam1
     image: raniaamri/rania-amri-5sleam1
-    environment:
-      MYSQL_ROOT_PASSWORD: ""
     ports:
-      - "8089:8089"
-    stdin_open: true
-    tty: true
+      - "8087:8089"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    restart: unless-stopped
+    depends_on:
+      - db-mysql
 
-volumes:
-  db:
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+    ports:
+      - "3305:3306"
+    restart: unless-stopped
+
