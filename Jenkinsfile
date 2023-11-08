@@ -46,7 +46,7 @@ environment {
                     archive "ft-staging/target/**/*"
                 }
             }
-        }
+        
                 
         stage("Publish to Nexus Repository Manager") {
             steps {
@@ -117,9 +117,11 @@ stage('Build Docker Image') {
             
                 }
             }
+    
          stage ('JaCoCo tests') {
             steps {
                 sh 'mvn verify -Pstaging'
             }
+         }
     }
 }
