@@ -90,5 +90,17 @@ stage('Publish Artifacts to Nexus') {
                 sh 'docker start 36d4bab685ef'
             }
         }
+        stage('Jacoco Report') {
+    steps {
+        script {
+            // Exécutez la génération des rapports Jacoco
+            sh "mvn jacoco:report"
+            
+            // Publiez les rapports Jacoco dans Jenkins
+            step([$class: 'JacocoPublisher', execPattern: '**/target/jacoco.exec', classPattern: '**/target/classes', sourcePattern: '**/src/main/java'])
+        }
+    }
+}
+
     }
 }
