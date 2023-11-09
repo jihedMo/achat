@@ -22,9 +22,9 @@ pipeline {
             steps {
                 sh "mvn test "  // Run JUnit tests
             }
-    }
+            }
 
-        }
+        
          stage("Maven Build") {
             steps {
                 script {
