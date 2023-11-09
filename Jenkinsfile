@@ -22,15 +22,6 @@ pipeline {
             steps {
                 sh "mvn test "  // Run JUnit tests
             }
-               
-            post {
-                always {
-                echo "Sending email notification"
-                        emailext subject: 'Build ${currentBuild.result}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]',
-                                  body: """<p>${DEFAULT_CONTENT}</p>""",
-                              to: 'mohamedjihed@gmail.com'
-                    }
-            }
     }
 
         }
