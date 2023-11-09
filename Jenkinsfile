@@ -22,6 +22,20 @@ pipeline {
             steps {
                 sh "mvn test "  // Run JUnit tests
             }
+                  post {
+        failure {
+            emailext subject: 'Notification d\'échec du build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé en échec.',
+                      to: 'jihed.mohamed@esprit.tn',
+                      mimeType: 'text/plain'
+        }
+        success {
+            emailext subject: 'Notification de réussite du build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé avec succès.',
+                      to: 'jihed.mohamed@esprit.tn',
+                      mimeType: 'text/plain'
+        }
+    }
 
         }
          stage("Maven Build") {
@@ -105,21 +119,6 @@ stage('Publish JaCoCo Reports') {
         }
     }
 }
-        stage('mailing'){
-    post {
-        failure {
-            emailext subject: 'Notification d\'échec du build Jenkins',
-                      body: 'Le build Jenkins s\'est terminé en échec.',
-                      to: 'jihed.mohamed@esprit.tn',
-                      mimeType: 'text/plain'
-        }
-        success {
-            emailext subject: 'Notification de réussite du build Jenkins',
-                      body: 'Le build Jenkins s\'est terminé avec succès.',
-                      to: 'jihed.mohamed@esprit.tn',
-                      mimeType: 'text/plain'
-        }
-    }
-        }
+        
     }
 }
