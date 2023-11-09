@@ -20,7 +20,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=
     ports:
-      - "3305:3306"
+      - "3307:3306"
     restart: unless-stopped
 
   sonarqube:
