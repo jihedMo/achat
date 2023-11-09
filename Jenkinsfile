@@ -84,6 +84,11 @@ stage('Publish Artifacts to Nexus') {
             
                 }
             }
-
+                stage('Grafana/prometheus') {
+            steps {
+                sh 'docker start 2fe92f506ba0'
+                sh 'docker start 36d4bab685ef'
+            }
+        }
     }
 }
