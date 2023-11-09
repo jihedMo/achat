@@ -37,7 +37,14 @@ environment {
                 }
             }
         }
-
+        stage('SonarQube') {
+            steps {
+                // Provide SonarQube authentication using the provided token
+                withCredentials([string(credentialsId: 'achatDevops', variable: 'SONAR_TOKEN')]) {
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
+                }
+            }
+        }
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -73,14 +80,7 @@ environment {
                 }
             }
         }
-        stage('SonarQube') {
-            steps {
-                // Provide SonarQube authentication using the provided token
-                withCredentials([string(credentialsId: 'achatDevops', variable: 'SONAR_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN"
-                }
-            }
-        }
+
         stage('Build Docker Image') {
             steps {
                 script {
