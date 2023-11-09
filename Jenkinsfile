@@ -105,19 +105,16 @@ stage('Publish JaCoCo Reports') {
         }
     }
 }
-post {
-    failure {
-        emailext subject: 'Échec dans le pipeline Jenkins',
-                  body: '''<p>Une erreur s'est produite dans le pipeline Jenkins.</p>
-                           <p>Source de l'erreur : ${currentBuild.result}</p>''',
-                  to: 'jihed.mohamed@esprit.tn',
-                  mimeType: 'text/html'
-    }
-}
-   post {
-        always {
-            emailext subject: 'Notification de fin de build Jenkins',
-                      body: 'Le build Jenkins s\'est terminé.',
+    post {
+        failure {
+            emailext subject: 'Notification d\'échec du build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé en échec.',
+                      to: 'jihed.mohamed@esprit.tn',
+                      mimeType: 'text/plain'
+        }
+        success {
+            emailext subject: 'Notification de réussite du build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé avec succès.',
                       to: 'jihed.mohamed@esprit.tn',
                       mimeType: 'text/plain'
         }
