@@ -5,7 +5,7 @@ services:
     container_name: smida_wiem_5sleam1
     image: wiem2023/smida_wiem_5sleam1
     ports:
-      - "8087:8089"
+      - "8083:8089"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/achatdb?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=root
@@ -20,7 +20,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=
     ports:
-      - "3305:3306"
+      - "3303:3306"
     restart: unless-stopped    
 
   sonarqube:
