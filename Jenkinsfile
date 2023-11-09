@@ -84,15 +84,6 @@ stage('Publish Artifacts to Nexus') {
             
                 }
             }
-    post {
-        success {
-            jacoco(
-                execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
-            )
-        }
-    }
 
     }
 }
