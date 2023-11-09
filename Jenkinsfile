@@ -101,18 +101,24 @@ stage('Publish Artifacts to Nexus') {
         }
     }
 }
-stage('jacoco Test') {
+stage('jacocoTest') {
     steps {
+        // Build and run your tests here
 
         // Generate JaCoCo code coverage reports
-        jacoco(execPattern: '**/target/jacoco.exec', classPattern: '**/target/classes')
+        sh "mvn clean test jacoco:report"
     }
 }
+
 stage('Publish JaCoCo Reports') {
     steps {
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/jacoco/', reportFiles: 'jacoco.csv', reportName: 'JaCoCo Code Coverage Report', reportTitles: ''])
+        script {
+            // Archive JaCoCo reports
+            step([$class: 'JacocoPublisher', execPattern: '**/target/jacoco.exec', classPattern: '**/target/classes'])
+        }
     }
 }
+
 
     }
 }
