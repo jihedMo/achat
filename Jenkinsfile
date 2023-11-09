@@ -61,7 +61,7 @@ stage('Publish Artifacts to Nexus') {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image (replace 'Dockerfile' with your Dockerfile location)
+                  
                     sh 'docker build -t jnounou/achat:1.0 -f Dockerfile .'
                 }
             }
@@ -69,11 +69,11 @@ stage('Publish Artifacts to Nexus') {
 
         stage('Push to DockerHub') { 
             steps { 
-                script { // Log in to DockerHub using the credentials 
+                script { 
                         withCredentials([string(credentialsId: 'dockerhub_hub', variable: 'DOCKERHUB_PASSWORD')]) { 
                         sh "docker login -u jnounou -p ${DOCKERHUB_PASSWORD}" 
                          } 
-                           // Push the Docker image to DockerHub 
+                          
                          sh 'docker push jnounou/achat:1.0'
                                                     }
                                                }
@@ -90,22 +90,10 @@ stage('Publish Artifacts to Nexus') {
                 sh 'docker start 36d4bab685ef'
             }
         }
-        stage('Jacoco Report') {
-    steps {
-        script {
-            // Exécutez la génération des rapports Jacoco
-            sh "mvn jacoco:report"
-            
-            // Publiez les rapports Jacoco dans Jenkins
-            step([$class: 'JacocoPublisher', execPattern: '**/target/jacoco.exec', classPattern: '**/target/classes', sourcePattern: '**/src/main/java'])
-        }
-    }
-}
+
 stage('jacocoTest') {
     steps {
-        // Build and run your tests here
 
-        // Generate JaCoCo code coverage reports
         sh "mvn clean test jacoco:report"
     }
 }
@@ -113,12 +101,26 @@ stage('jacocoTest') {
 stage('Publish JaCoCo Reports') {
     steps {
         script {
-            // Archive JaCoCo reports
             step([$class: 'JacocoPublisher', execPattern: '**/target/jacoco.exec', classPattern: '**/target/classes'])
         }
     }
 }
-
-
+post {
+    failure {
+        emailext subject: 'Échec dans le pipeline Jenkins',
+                  body: '''<p>Une erreur s'est produite dans le pipeline Jenkins.</p>
+                           <p>Source de l'erreur : ${currentBuild.result}</p>''',
+                  to: 'jihed.mohamed@esprit.tn',
+                  mimeType: 'text/html'
+    }
+}
+   post {
+        always {
+            emailext subject: 'Notification de fin de build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé.',
+                      to: 'jihed.mohamed@esprit.tn',
+                      mimeType: 'text/plain'
+        }
+    }
     }
 }
