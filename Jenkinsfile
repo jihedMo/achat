@@ -113,7 +113,7 @@ stage('Publish JaCoCo Reports') {
             echo 'Étape post exécutée'
             emailext subject: 'Notification de fin de build Jenkins',
                       body: 'Le build Jenkins s\'est terminé.',
-                      to: 'destinataire@exemple.com',
+                      to: 'jihed.mohamed@esprit.tn',
                       mimeType: 'text/plain'
         }
     }
