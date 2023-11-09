@@ -108,4 +108,13 @@ stage('Publish JaCoCo Reports') {
 }
         
     }
+        post {
+        always {
+            // Configuration de l'envoi d'e-mail
+            emailext subject: "Build ${currentBuild.result}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                      body: """<p>${DEFAULT_CONTENT}</p>""",
+                      to: "mohamedjihed@gmail.com",
+                      attachLog: true
+        }
+    }
 }
