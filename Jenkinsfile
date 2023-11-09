@@ -108,13 +108,13 @@ stage('Publish JaCoCo Reports') {
 }
         
     }
-        post {
+    post {
         always {
-            // Configuration de l'envoi d'e-mail
-            emailext subject: "Build ${currentBuild.result}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                      body: """<p>${DEFAULT_CONTENT}</p>""",
-                      to: "mohamedjihed@gmail.com",
-                      attachLog: true
+            echo 'Étape post exécutée'
+            emailext subject: 'Notification de fin de build Jenkins',
+                      body: 'Le build Jenkins s\'est terminé.',
+                      to: 'destinataire@exemple.com',
+                      mimeType: 'text/plain'
         }
     }
 }
