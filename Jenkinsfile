@@ -105,6 +105,7 @@ stage('Publish JaCoCo Reports') {
         }
     }
 }
+        stage('mailing'){
     post {
         failure {
             emailext subject: 'Notification d\'échec du build Jenkins',
@@ -119,5 +120,6 @@ stage('Publish JaCoCo Reports') {
                       mimeType: 'text/plain'
         }
     }
+        }
     }
 }
