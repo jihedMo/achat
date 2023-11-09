@@ -23,18 +23,14 @@ pipeline {
                 sh "mvn test "  // Run JUnit tests
             }
                   post {
-        failure {
-            emailext subject: 'Notification d\'échec du build Jenkins',
-                      body: 'Le build Jenkins s\'est terminé en échec.',
-                      to: 'jihed.mohamed@esprit.tn',
-                      mimeType: 'text/plain'
-        }
-        success {
-            emailext subject: 'Notification de réussite du build Jenkins',
-                      body: 'Le build Jenkins s\'est terminé avec succès.',
-                      to: 'jihed.mohamed@esprit.tn',
-                      mimeType: 'text/plain'
-        }
+post {
+    always {
+        echo "Sending email notification"
+        emailext subject: 'Build ${currentBuild.result}: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]',
+                  body: """<p>${DEFAULT_CONTENT}</p>""",
+                  to: 'mohamedjihed@gmail.com'
+    }
+}
     }
 
         }
