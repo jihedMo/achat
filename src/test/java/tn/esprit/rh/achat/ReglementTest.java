@@ -26,52 +26,44 @@ public class ReglementTest {
 
     @Test
     public void testAddReglement() {
-        // Création d'un objet Reglement de test
+
         Reglement reglement = new Reglement();
         reglement.setMontantPaye(100);
         reglement.setMontantRestant(50);
 
-        // Définir le comportement de la méthode addReglement du service mock
+
         when(reglementService.addReglement(any(Reglement.class))).thenReturn(reglement);
 
-        // Appeler la méthode du contrôleur
+
         Reglement createdReglement = reglementController.addReglement(reglement);
 
-        // Vérifier si le Reglement renvoyé par le contrôleur correspond à celui renvoyé par le service mock
+
         assertEquals(reglement, createdReglement);
     }
 
     @Test
     public void testGetReglement() {
-        // Création d'une liste de règlements de test
-        List<Reglement> reglements = new ArrayList<>();
-        // Ajouter des règlements à la liste (remplacez avec des objets Reglement appropriés)
-        // ...
 
-        // Définir le comportement de la méthode retrieveAllReglements du service mock
+        List<Reglement> reglements = new ArrayList<>();
+
         when(reglementService.retrieveAllReglements()).thenReturn(reglements);
 
-        // Appeler la méthode du contrôleur
         List<Reglement> retrievedReglements = reglementController.getReglement();
 
-        // Vérifier si la liste de règlements renvoyée par le contrôleur correspond à celle renvoyée par le service mock
         assertEquals(reglements, retrievedReglements);
     }
 
     @Test
     public void testRetrieveReglement() {
-        // Identifiant du règlement que l'on veut récupérer
+
         Long reglementId = 1L;
 
-        // Création d'un objet Reglement de test
-        Reglement reglement = new Reglement();
-        // Initialiser les propriétés de reglement avec des valeurs appropriées
-        // ...
 
-        // Définir le comportement de la méthode retrieveReglement du service mock
+        Reglement reglement = new Reglement();
+
         when(reglementService.retrieveReglement(reglementId)).thenReturn(reglement);
 
-        // Appeler la méthode du contrôleur
+
         Reglement retrievedReglement = reglementController.retrieveReglement(reglementId);
 
         // Vérifier si le Reglement renvoyé par le contrôleur correspond à celui renvoyé par le service mock
